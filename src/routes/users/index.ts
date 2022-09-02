@@ -7,9 +7,7 @@ const baseURL = process.env.BASE_URL_API_USERS
 
 userRoutes.get('/', async (req, res) => {
   const allUsers = await axios.get(baseURL + '/users')
-  return res.status(200).send({
-    users: allUsers.data
-  })
+  return res.status(200).send(allUsers.data)
 })
 
 userRoutes.post('/register', async (req: Request, res: Response) => {
