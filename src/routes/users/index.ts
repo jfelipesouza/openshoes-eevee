@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Request, Response, Router } from 'express'
+import { IUser } from '../../@types/interfaces/user'
 
 const userRoutes = Router()
 const baseURL = process.env.BASE_URL_API_USERS
@@ -12,25 +13,54 @@ userRoutes.get('/', async (req, res) => {
 })
 
 userRoutes.post('/register', async (req: Request, res: Response) => {
-  const user = req.body
+  const {
+    email,
+    password,
+    type,
+    address,
+    cnpj,
+    link,
+    phone,
+    store_name,
+    store_type
+  } = req.body as IUser
 
-  if (user.type === 'logist') {
-    const createNewLogist = await axios.post(baseURL + '/user/logist', user)
+  if (type === 'logist') {
+    const createNewLogist = await axios.post(baseURL + '/user/logist', {
+      email,
+      password,
+      type,
+      address,
+      cnpj,
+      link,
+      phone,
+      store_name,
+      store_type
+    })
     console.log('entrou aqui')
     return res.status(200).send({
       user: createNewLogist.data
     })
   }
-  if (user.type === 'client') {
+  if (type === 'client') {
     const createNewClient = await axios.post(baseURL + '/user', {
-      email: user.email,
-      password: user.password,
-      type: user.type
+      email,
+      password,
+      type
     })
-    console.log('Batata')
     return res.status(200).send({
       user: createNewClient.data
     })
   }
 })
+
+userRoutes.post('/login', async (req: Request, res: Response) => {
+  const { email, password } = req.body
+  const userToken = await axios.post(baseURL + '/login', { email, password })
+
+  return res.status(200).send({
+    token: userToken.data
+  })
+})
+
 export { userRoutes }

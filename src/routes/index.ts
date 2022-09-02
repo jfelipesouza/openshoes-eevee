@@ -16,6 +16,6 @@ routes.get('/', (req: Request, res: Response) => {
 routes.use('/categories', categoryRoutes)
 routes.use('/products', productsRouter)
 routes.use('/image', imageRoutes)
-routes.use('/users', userRoutes)
+routes.use('/user', userRoutes)
 
 export { routes }
