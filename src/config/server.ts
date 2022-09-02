@@ -2,8 +2,10 @@ import 'express-async-errors'
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
+import swaggerUi from 'swagger-ui-express'
 import { BugLaucher } from '../middlewares/errors'
 import { routes } from '../routes'
+import swaggerDocs from '../../swagger.json'
 
 // Created server
 const app = express()
@@ -11,9 +13,10 @@ const app = express()
 // Set Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors({ origin: process.env.CROSS_ORIGIN }))
+app.use(cors())
 app.use(morgan('dev'))
 app.use('/', routes)
 app.use(BugLaucher)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 export { app }

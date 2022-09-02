@@ -5,6 +5,9 @@
   "exec": "ts-node-dev --respawn --transpile-only  --ignore-watch node_modules --no-notify ./src/index.ts",
   "env": {
     "PORT": 3000,
-    "CROSS_ORIGIN": "*"
+    "CROSS_ORIGIN": "*",
+    "BASE_URL_API_IMAGE": "https://openshoes-image.herokuapp.com",
+    "BASE_URL_API_PRODUCTS": "https://openshoes-products.herokuapp.com",
+    "BASE_URL_API_USERS": "https://openshoes-users.herokuapp.com"
   }
 }
