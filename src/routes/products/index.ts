@@ -13,16 +13,15 @@ productsRouter.get('/', async (req: Request, res: Response) => {
 
 productsRouter.post('/', async (req: Request, res: Response) => {
   const { category, image, logistCode, model, price, size } = req.body
-  const body = {
+
+  const product = await axios.post(baseUrl, {
     category,
     image,
     logistCode,
     model,
     price,
     size
-  }
-
-  const product = await axios.post(baseUrl, body)
+  })
 
   return res.status(200).send({
     product: product.data
@@ -38,18 +37,18 @@ productsRouter.get('/:id', async (req: Request, res: Response) => {
 
 productsRouter.put('/:id', async (req: Request, res: Response) => {
   const { id } = req.params
-  const { category, image, logistCode, model, price, size } = req.body
-  const body = {
+  const { category, image, logistCode, model, price, size, available } =
+    req.body
+
+  const productsList = await axios.put(baseUrl + `/${id}`, {
     category,
     image,
     logistCode,
     model,
     price,
     size,
-    id
-  }
-
-  const productsList = await axios.put(baseUrl + `/${id}`, body)
+    available
+  })
   return res.status(200).send({
     products: productsList.data
   })
