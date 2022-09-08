@@ -41,6 +41,7 @@ productsRouter.put('/:id', async (req: Request, res: Response) => {
     req.body
 
   const productsList = await axios.put(baseUrl + `/${id}`, {
+    id,
     category,
     image,
     logistCode,
