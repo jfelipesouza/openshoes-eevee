@@ -11,29 +11,13 @@ userRoutes.get('/', async (req, res) => {
 })
 
 userRoutes.post('/register', async (req: Request, res: Response) => {
-  const {
-    email,
-    password,
-    type,
-    address,
-    cnpj,
-    link,
-    phone,
-    store_name,
-    store_type
-  } = req.body as IUser
+  const { email, password, type } = req.body
 
   if (type === 'logist') {
     const createNewLogist = await axios.post(baseURL + '/user/logist', {
       email,
       password,
-      type,
-      address,
-      cnpj,
-      link,
-      phone,
-      store_name,
-      store_type
+      type
     })
     console.log('entrou aqui')
     return res.status(200).send({
