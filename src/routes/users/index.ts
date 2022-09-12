@@ -74,7 +74,10 @@ userRoutes.post('/refresh', async (req: Request, res: Response) => {
 userRoutes.patch('/logist', async (req: Request, res: Response) => {
   const { userData } = req.body
   console.log(userData)
-  const user = await axios.patch(`${baseURL}/user`, { userData })
+  console.log('entrou aqui')
+  const user = await axios.patch(baseURL + '/user', {
+    userData
+  })
 
   return res.status(200).send({
     message: 'Atualizado com sucesso',
