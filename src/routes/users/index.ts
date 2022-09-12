@@ -44,10 +44,8 @@ userRoutes.post('/login', async (req: Request, res: Response) => {
 })
 
 userRoutes.post('/create/store', async (req: Request, res: Response) => {
-  const url = baseURL + '/user/store'
   const { address, cnpj, link, store_name, store_type, logist_code } = req.body
-
-  const store = await axios.post(url, {
+  const store = await axios.post(baseURL + '/user/store', {
     address,
     cnpj,
     link,
@@ -56,6 +54,6 @@ userRoutes.post('/create/store', async (req: Request, res: Response) => {
     logist_code
   })
 
-  return res.status(200).send(store)
+  return res.status(200).send(store.data)
 })
 export { userRoutes }
