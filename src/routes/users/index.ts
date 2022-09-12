@@ -56,4 +56,19 @@ userRoutes.post('/create/store', async (req: Request, res: Response) => {
 
   return res.status(200).send(store.data)
 })
+
+userRoutes.post('/refresh', async (req: Request, res: Response) => {
+  const { token } = req.body
+
+  if (typeof token !== 'string') {
+    return res.status(500).send({ message: 'Invalid token', status: 'ERROR' })
+  }
+
+  const newToken = await axios.post(baseURL + '/user/refresh', {
+    token
+  })
+
+  return res.status(200).send(newToken.data)
+})
+
 export { userRoutes }
