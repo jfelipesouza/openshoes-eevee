@@ -19,7 +19,7 @@ productsRouter.post('/', async (req: Request, res: Response) => {
     image,
     logistCode,
     model,
-    price,
+    price: parseFloat(price),
     size
   })
 
