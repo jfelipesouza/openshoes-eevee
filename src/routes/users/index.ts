@@ -78,7 +78,6 @@ userRoutes.patch('/logist', async (req: Request, res: Response) => {
   const user = await axios.patch(baseURL + '/user', {
     userData
   })
-
   return res.status(200).send({
     message: 'Atualizado com sucesso',
     user: user.data
