@@ -11,7 +11,6 @@ userRoutes.get('/', async (req, res) => {
 
 userRoutes.post('/register', async (req: Request, res: Response) => {
   const { email, password, type } = req.body
-
   if (type === 'logist') {
     const createNewLogist = await axios.post(baseURL + '/user/logist', {
       email,
