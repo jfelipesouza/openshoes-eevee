@@ -15,7 +15,7 @@ productsRouter.post('/', async (req: Request, res: Response) => {
   const { category, image, logistCode, model, price, size } = req.body
 
   const product = await axios.post(baseUrl, {
-    category,
+    category: parseInt(category),
     image,
     logistCode,
     model,
