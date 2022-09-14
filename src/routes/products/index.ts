@@ -105,9 +105,10 @@ productsRouter.get('/focus/:id', async (req: Request, res: Response) => {
   const store = await axios.get(
     process.env.BASE_URL_API_USERS + `/user/store/${product.logistCode}`
   )
+  const { address, cnpj, link, store_name, store_type } = store.data
   return res.send({
     ...product,
-    ...store.data
+    store: { address, cnpj, link, store_name, store_type }
   })
 })
 
