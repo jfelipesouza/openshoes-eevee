@@ -70,10 +70,10 @@ userRoutes.post('/refresh', async (req: Request, res: Response) => {
   return res.status(200).send(newToken.data)
 })
 
-userRoutes.patch('/logist', async (req: Request, res: Response) => {
+userRoutes.put('/logist', async (req: Request, res: Response) => {
   const { userData } = req.body
 
-  const user = await axios.patch(baseURL + '/user', {
+  const user = await axios.put(baseURL + '/user', {
     userData
   })
   return res.status(200).send({
