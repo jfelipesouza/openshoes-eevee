@@ -98,4 +98,21 @@ productsRouter.get('/type/:type', async (req: Request, res: Response) => {
   })
 })
 
+productsRouter.get('/focus/:id', async (req: Request, res: Response) => {
+  const { id } = req.params
+  const productsList = await axios.get(baseUrl + `/${id}`)
+  const product = productsList.data
+
+  const store = await axios.get(
+    process.env.BASE_URL_API_USERS + `/user/store/${product.logistCode}`
+  )
+  console.log(store.data)
+  return res.send({
+    ...product,
+    stote: {
+      ...store.data
+    }
+  })
+})
+
 export { productsRouter }
