@@ -107,9 +107,7 @@ productsRouter.get('/focus/:id', async (req: Request, res: Response) => {
   )
   return res.send({
     ...product,
-    store: {
-      ...store.data
-    }
+    ...store
   })
 })
 
